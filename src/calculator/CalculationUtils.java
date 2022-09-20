@@ -3,6 +3,8 @@ package calculator;
 import java.util.Scanner;
 
 public class CalculationUtils {
+    private static final String CALCULATOR_OPERATIONS = "[-+*/]"; // operations that are available to the user when using the calculator
+
     private static double getNumber() {
         double number = 0;
         Scanner scanner = new Scanner(System.in);
@@ -19,7 +21,7 @@ public class CalculationUtils {
         Scanner scanner = new Scanner(System.in);
         String operation = scanner.next();
 
-        if (!operation.matches("[-+*/]") || operation.length() > 1) {
+        if (!operation.matches(CALCULATOR_OPERATIONS) || operation.length() > 1) {
             System.out.println("Вы ввели неверный оператор");
             operation = getOperation();
         }
@@ -81,5 +83,6 @@ public class CalculationUtils {
         }
         workAgain();
     }
+
 }
 
