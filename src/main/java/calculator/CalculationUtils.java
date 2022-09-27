@@ -3,6 +3,7 @@ package calculator;
 import java.util.Scanner;
 
 public class CalculationUtils {
+
     private static final String CALCULATOR_OPERATIONS = "[-+*/]"; // operations that are available to the user when using the calculator
 
     private static double getNumber() {
