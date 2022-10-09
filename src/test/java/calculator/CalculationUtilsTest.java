@@ -31,21 +31,21 @@ class CalculationUtilsTest {
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
-        assertEquals(expected, actual);
+        assertEquals(expected, actual,"Error when trying to enter positive,negative or fractional number");
     }
 
     @DisplayName("Checking for the possibility to enter not a number")
     @ParameterizedTest
     @CsvSource(value = "One")
-    void getPositiveNegativeFractionalNumberTest(String not_A_Number) {
+    void getPositiveNegativeFractionalNumberTest(String notANumber) {
         Class<CalculationUtils> clazz = CalculationUtils.class;
-        ByteArrayInputStream in = new ByteArrayInputStream(not_A_Number.getBytes());
+        ByteArrayInputStream in = new ByteArrayInputStream(notANumber.getBytes());
         System.setIn(in);
         try {
             Method method = clazz.getDeclaredMethod("getNumber");
             method.setAccessible(true);
             CalculationUtils cu = new CalculationUtils();
-            assertThrows(Exception.class, () -> method.invoke(cu));
+            assertThrows(Exception.class, () -> method.invoke(cu),"Error when trying to enter not a number");
         } catch (NoSuchMethodException e) {
             throw new RuntimeException(e);
         }
@@ -60,7 +60,7 @@ class CalculationUtilsTest {
             Method method = clazz.getDeclaredMethod("divideByZero", Double.class, String.class);
             method.setAccessible(true);
             CalculationUtils cu = new CalculationUtils();
-            assertTrue((boolean) method.invoke(cu, secondNumber, divideOperation));
+            assertTrue((boolean) method.invoke(cu, secondNumber, divideOperation),"Error when dividing by 0");
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
@@ -82,7 +82,7 @@ class CalculationUtilsTest {
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
-        assertEquals(expected, actual);
+        assertEquals(expected, actual,"Error when trying to enter operation (+,-,*,/)");
     }
 
     @DisplayName("Checking for the possibility to enter something other than (+,-,*,/)")
@@ -96,7 +96,7 @@ class CalculationUtilsTest {
             Method method = clazz.getDeclaredMethod("getOperation");
             method.setAccessible(true);
             CalculationUtils cu = new CalculationUtils();
-            assertThrows(Exception.class, () -> method.invoke(cu));
+            assertThrows(Exception.class, () -> method.invoke(cu),"Error when trying to enter something other than (+,-,*,/)");
         } catch (NoSuchMethodException e) {
             throw new RuntimeException(e);
         }
@@ -115,7 +115,6 @@ class CalculationUtilsTest {
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
-        assertEquals(expected, actual);
+        assertEquals(expected, actual,"Incorrect work determineAction method");
     }
-
 }
