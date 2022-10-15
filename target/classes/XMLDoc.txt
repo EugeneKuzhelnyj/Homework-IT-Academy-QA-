@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<journal>
+   <title>Very Useful Journal</title>
+   <contacts>
+      <address>Minsk</address>
+      <tel>8-3232-121212</tel>
+      <email>j@j.com</email>
+      <url>www.j.com</url>
+   </contacts>
+   <articles>
+      <article ID="1">
+         <articleTitle>Issue overview</articleTitle>
+	 <author>Jhon</author>
+         <articleUrl>/article1</articleUrl>
+	<hotkeys>
+            <hotkey>language</hotkey>
+            <hotkey>marckup</hotkey>
+            <hotkey>hypertext</hotkey>
+         </hotkeys>
+      </article>
+      <article ID="2">
+         <articleTitle>Latest reviews</articleTitle>
+	 <author>Mike</author>
+         <articleUrl>/article2</articleUrl>
+         <hotkeys>
+            <hotkey>marckup</hotkey>
+            <hotkey>hypertext</hotkey>
+         </hotkeys>
+      </article>
+   </articles>
+</journal>
