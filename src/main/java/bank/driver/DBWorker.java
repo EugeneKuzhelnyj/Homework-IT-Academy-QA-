@@ -1,11 +1,10 @@
-package bank.domain;
+package bank.driver;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBWorker {
-
     private static final String JDBC_DRIVER_PATH = "org.sqlite.JDBC";
     private static final String DATABASE_URL = "jdbc:sqlite:C:\\Users\\kuzhe\\" +
             "IdeaProjects\\Homework\\src\\main\\java\\bank\\dataBase\\MyDataBase.db";
@@ -33,4 +32,5 @@ public class DBWorker {
             return false;
         }
     }
+
 }

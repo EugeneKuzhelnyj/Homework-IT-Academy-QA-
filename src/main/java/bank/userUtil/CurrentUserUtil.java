@@ -1,6 +1,6 @@
 package bank.userUtil;
 
-import bank.domain.DBWorker;
+import bank.driver.DBWorker;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

@@ -6,7 +6,6 @@ public class Transaction {
     private int transactionId;
     private int accountId;
     private int amount;
-
     public Transaction() {
     }
 

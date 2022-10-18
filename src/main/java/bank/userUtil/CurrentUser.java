@@ -6,7 +6,6 @@ public class CurrentUser {
     private static String currentUserName;
     private static int accountId;
 
-
     public static int getAccountId() {
         return accountId;
     }

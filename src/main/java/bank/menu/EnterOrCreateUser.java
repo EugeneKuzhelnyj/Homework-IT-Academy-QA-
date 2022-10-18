@@ -1,6 +1,6 @@
 package bank.menu;
 
-import bank.domain.DBWorker;
+import bank.driver.DBWorker;
 import bank.userUtil.AddAccount;
 import bank.userUtil.CurrentUserUtil;
 import bank.userUtil.UserRegistration;
@@ -13,15 +13,14 @@ public class EnterOrCreateUser {
     static DBWorker dbWorker = new DBWorker();
 
     public static void enterOrCreateUser() {
-        AccountSelection accountSelection = new AccountSelection();
         int choice;
+        AccountSelection accountSelection = new AccountSelection();
         System.out.println("Нажмите 1, чтобы зарегистрироваться или 2,чтобы войти в свою учетную запись");
         Scanner scanner = new Scanner(System.in);
         while (!scanner.hasNextInt() || (choice = scanner.nextInt()) <= 0 || choice > 2) {
             System.out.println("Ошибка,повторите ввод");
             scanner.nextLine();
         }
-
         switch (choice) {
             case 1:
                 try {

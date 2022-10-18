@@ -1,6 +1,6 @@
 package bank.menu;
 
-import bank.domain.DBWorker;
+import bank.driver.DBWorker;
 import bank.userUtil.AddAccount;
 
 import java.sql.SQLException;

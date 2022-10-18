@@ -1,6 +1,6 @@
 package bank.transactionsUtil;
 
-import bank.domain.DBWorker;
+import bank.driver.DBWorker;
 import bank.domain.Transaction;
 import bank.userUtil.CurrentUser;
 
@@ -12,17 +12,21 @@ import java.util.Scanner;
 
 public class TransactionUtils {
     static DBWorker dbWorker = new DBWorker();
+    private static int amount = 0;
+
+    private static boolean isAmountForAddingRight(Scanner scanner,int maxAmount, int accountBalance, int maxBalance) {
+        return (!scanner.hasNextInt() || (amount = scanner.nextInt()) < 0 || amount > maxAmount || accountBalance > (maxBalance - amount));
+    }
 
     public static Transaction addMoney() {
         int transactionId = CreateTransaction.addTransactionId();
         int accountId = CreateTransaction.getAccountId(dbWorker.getConnection());
-        int amount = 0;
         int accountBalance = getBalance(dbWorker.getConnection());
-        int maxBalance = 2_000_000_000 - amount;
+        int maxBalance = 2_000_000_000;
         int maxAmount = 100_000_000;
         System.out.println("Введите сумму,которой вы хотите пополнить счет");
         Scanner scanner = new Scanner(System.in);
-        while (!scanner.hasNextInt() || (amount = scanner.nextInt()) < 0 || amount > maxAmount || accountBalance > maxBalance) {
+        while (isAmountForAddingRight(scanner, maxAmount, accountBalance, maxBalance)) {
             if (amount < 0) {
                 System.out.println("Ошибка. Сумма не может быть отрицательной. Повторите ввод");
             }
@@ -38,6 +42,10 @@ public class TransactionUtils {
         return new Transaction(transactionId, accountId, amount);
     }
 
+    private static boolean isAmountForTakingRight(Scanner scanner, int maxAmount, int accountBalance) {
+        return (amount = scanner.nextInt()) < 0 || amount > maxAmount || accountBalance < amount;
+    }
+
     public static Transaction takeMoney() {
         int transactionId = CreateTransaction.addTransactionId();
         int accountId = CreateTransaction.getAccountId(dbWorker.getConnection());
@@ -46,7 +54,7 @@ public class TransactionUtils {
         int accountBalance = getBalance(dbWorker.getConnection());
         System.out.println("Введите сумму,которую вы хотите снять со счета2");
         Scanner scanner = new Scanner(System.in);
-        while ((amount = scanner.nextInt()) < 0 || amount > maxAmount || accountBalance < amount) {
+        while (isAmountForTakingRight(scanner, maxAmount, accountBalance)) {
             if (amount < 0) {
                 System.out.println("Ошибка. Сумма не может быть отрицательной. Повторите ввод");
             }
@@ -76,6 +84,7 @@ public class TransactionUtils {
         }
         return balance;
     }
+
     public static void setBalance(int newBalance, Connection connection) {
         try (Statement statement = connection.createStatement()) {
             statement.executeQuery(String.format("update accounts set balance = '%d' where userId = '%d' and currency = '%s' ",

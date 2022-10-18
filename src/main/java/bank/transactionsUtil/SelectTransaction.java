@@ -1,13 +1,12 @@
 package bank.transactionsUtil;
 
-import bank.domain.DBWorker;
+import bank.driver.DBWorker;
 import bank.domain.Transaction;
 
 import java.sql.SQLException;
 import java.util.Scanner;
 public class SelectTransaction {
     static DBWorker dbWorker = new DBWorker();
-
     public static void chooseTransaction() throws SQLException {
         int choice;
         System.out.println("Нажмите 1, чтобы пополнить счет или 2,чтобы снять средства со счета");

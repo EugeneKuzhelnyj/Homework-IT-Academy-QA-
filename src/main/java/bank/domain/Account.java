@@ -6,19 +6,16 @@ public class Account {
     private int accountId;
     private double balance;
     private String currency;
-
     private int userId;
 
     public Account() {
     }
-
     public Account(int accountId, double balance, String currency, int userId) {
         this.accountId = accountId;
         this.balance = balance;
         this.currency = currency;
         this.userId = userId;
     }
-
     public int getAccountId() {
         return accountId;
     }
@@ -58,7 +55,6 @@ public class Account {
         Account account = (Account) o;
         return accountId == account.accountId && Double.compare(account.balance, balance) == 0 && userId == account.userId && Objects.equals(currency, account.currency);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(accountId, balance, currency, userId);
